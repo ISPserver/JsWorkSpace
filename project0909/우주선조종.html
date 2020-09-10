@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  button{
+    font-size: 50px;
+  }
+  #pic{    
+    position: absolute; /*절대위치(부모요소를 기준으로 한 배치방법)*/
+    left: 270px;
+    top: 50px;
+    width: 200px;
+  }
+  body{
+    /*배경은 다른 요소들과 물리적인 충돌이 없음*/
+    background: url(https://cdna.artstation.com/p/assets/images/images/008/654/210/large/sreehari-menon-bg4mob-part-2.jpg?1514312594);
+    background-repeat: repeat-x;
+    background-position: 0px 0px;
+  }
+  </style>
+  <script>
+    var x=270;
+    var y=50;
+    var bgX = 0;
+    function moveLeft(){
+      x-=20;
+      document.getElementById("pic").style.left=x+"px";
+    }
+    function moveRight(){
+      x+=20;
+      document.getElementById("pic").style.left=x+"px";
+    }
+    function moveDown(){
+      y+=20;
+      document.getElementById("pic").style.top=y+"px";
+    }
+    function moveUp(){
+      y-=20;
+      document.getElementById("pic").style.top=y+"px";
+    }
+    function moveBg(){
+      bgX-=50;
+      /*body는 문서내에 1개밖에 없기때문에 굳이 id를 부여할 필요가 없다.*/
+      document.body.style.backgroundPosition=bgX+"px 0px";      
+    }
+    function auto(){
+    setInterval("moveBg()", 50) /*1000분의 10초 간격*/
+    }
+  </script>
+</head>
+<body>
+  <button onclick="moveLeft()">◀</button>
+  <button onclick="moveRight()">▶</button>
+  <button onclick="moveUp()">▲</button>
+  <button onclick="moveDown()">▼</button>
+  <button onclick="moveBg()">수동 배경이동</button>
+  <button onclick="auto()">자동 배경이동</button>
+  <img src="https://wiki.altitudegame.com/images/1/1a/Biplane_HD.png" id="pic">  
+</body>
+</html>

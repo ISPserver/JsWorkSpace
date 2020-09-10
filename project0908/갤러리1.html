@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>    
+    #wrapper{
+      width: 500px;
+      height: 450px;      
+      margin: auto;
+    }
+    #box1{
+      width: 100%;
+      height: 400px;
+      background: #e633d7;
+    }
+    #box2{
+      width: 100%;
+      height: 50px;
+      overflow: hidden;
+    }
+    #bt_right{
+      float:right;/*자식이 떠있으면, 원칙상 부모의 overflow:hidden 속성을 줘야함*/
+    }
+    #box2 button{
+      font-size: 25px;
+      padding: 4px;
+    }
+    #pic{
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script>
+    var dir="../images/travel/"
+    var n=1;
+    function next(){
+      n+=1;
+      if(n>10){
+        alert("Stop");
+        n=10;
+      }
+      var p =document.getElementById("pic").src=dir+n+".jpg";    
+      
+    }
+    function before(){
+      n-=1;
+      if(n<1){
+        alert("Stop");
+        n=1;
+      }
+      var p =document.getElementById("pic").src=dir+n+".jpg";       
+    }
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="box1">
+      <img src="../images/travel/1.jpg" id="pic">
+    </div>
+    <div id="box2">
+      <button id="bt_left" onclick="before()">◀</button>
+      <button id="bt_right" onclick="next()">▶</button>
+    </div>
+  </div>
+</body>
+</html>
