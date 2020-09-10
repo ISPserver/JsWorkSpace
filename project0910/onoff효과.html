@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background: black;
+    }
+    button{
+      font-size: 50px;
+    }
+  </style>
+  <script>
+    var bg;
+    var flag=true;
+    function turn() {            
+      bg=(true)?"white":"black";
+      document.body.style.background=bg;
+      flag=!flag;
+    }
+  </script>
+</head>
+<body>
+  <button onclick="turn()">원터치 스위치</button>
+</body>
+</html>

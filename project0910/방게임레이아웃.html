@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #wrapper{
+      width: 800px;
+      height: 600px;
+      background: red;
+      margin: auto;
+      position: relative;
+    }
+    /*wrapper 자식인 codem content를 부모를 기준으로 배치*/  
+    #code{
+      width: 100px;
+      height: 100%;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      background: #dfdfdf;
+    }
+    #content{
+      width: 700px;
+      height: 100%;
+      position: absolute;
+      left: 100px;
+      top: 0px;
+      background: green;
+    }
+    #mask{
+      width: 700px;
+      height: 600px;
+      background: black;
+      opacity: 0.8;
+    }
+    img, #mask{
+      position: absolute;
+      left: 0px;
+      top: 0px;
+    }
+    button{
+      background-image: url("../images/light/switch_off.png");
+      background-repeat: no-repeat;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+  <script>
+    var flag_light=true;
+    var flag_btn =true;        
+    function turn(){
+      var btn = flag_btn?"switch_on.png" : "switch_off.png"
+      var light = flag_light?"0":"0.8";
+      document.getElementById("btn").style.backgroundImage="url(../images/light/"+btn+")";
+      document.getElementById("mask").style.opacity=light;
+      flag_btn =!flag_btn;
+      flag_light =!flag_light;      
+    }
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="code">
+      <button id="btn" onclick="turn()"></button>
+    </div>
+    <div id="content">
+      <img src="../images/light/room.jpg" width="700px" height="600px">
+      <div id="mask"></div>
+    </div>
+  </div>
+</body>
+</html>

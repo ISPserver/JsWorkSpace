@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>카운터 증가</title>
+  <style>
+    div{
+      width: 400px;
+      height: 300px;
+      background-color: yellow;
+      font-size: 170px;
+      text-align: center;
+    }
+    button{
+      font-size: 100px;
+    }
+  </style>
+  <script>
+    //버튼을 누를때마다, 1씩 증가시키되 3마다
+    //문서내 div의 컨텐츠에 숫자 대신 원하는 단어를 출력하자.
+    var n=0;
+    var msg;
+    function setCount(){
+      n++;
+      msg = (n%3==0)?"팝콘":n;
+      document.getElementById("box").innerText=msg;
+    }
+  </script>
+</head>
+<body>
+  <button onclick="setCount()">카운터 증가</button>
+  <div id="box">0</div>
+</body>
+</html>
