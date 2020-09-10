@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #box{
+      width: 100px;
+      height: 100px;
+      background: red;
+      position: absolute;
+      left: 0px;
+      top: 200px;
+    }
+    button, input{
+      font-size: 100px;
+    }
+  </style>
+  <script>
+    var x=0; //박스의 x 좌표값 결정짓는 변수
+    var step=0;
+    var flag;
+    var a=true;
+    var b;
+    function move(){      
+      start=(x==100) ? a=false : b=true;
+      end=(x==0) ? a=true : b=true;
+      step=(a&&b) ? x+=10 : x-=10;
+      document.getElementById("box").style.left=x+"px";
+      document.getElementById("info").value=step;
+    }
+  </script>
+</head>
+<body>
+  <button onclick="move()">움직이기</button>
+  <input type="text" id="info" value="" width="100px" height="100px">
+  <div id="box"></div>
+</body>
+</html>
