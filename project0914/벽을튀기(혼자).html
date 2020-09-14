@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+    #wrapper{
+      width: 700px;
+      height: 700px;
+      background: turquoise;
+      margin: auto;
+      position: relative;
+    }    
+</style>
+<script>
+var x=0;//box의 x좌표    
+var y=100;//box의 y좌표
+var x_step=6; //우측,좌측을 결정짓는 발걸음 변수
+var y_step=8; //우측,좌측을 결정짓는 발걸음 변수
+var flag=true;
+var box; //수행 오류!!
+
+function init(){
+    //박스의 스타일을 css가 아닌 js프로그래밍으로 처리!
+    //효과적으론 달라질게 없으나 css를 프로그램으로 제어 가능하다; 
+    box = document.getElementById("box");//전역변수 선언
+    box.style.width=50+"px";
+    box.style.height=50+"px";
+    box.style.background="red";
+    box.style.position="absolute";
+    box.style.left=x+"px";
+    box.style.top=y+"px";
+}
+//수동
+function move(){    
+    x+=x_step;
+    y+=y_step;
+    box.style.left=x+"px";
+    box.style.top=y+"px";  
+    //박스안에 x값 출력 
+    box.innerText=x+"는"+y;
+    if(y==652 || y==4){
+      y_step= -y_step;
+    }
+    else if(x==648 || x==0){
+      x_step= -x_step;
+    }        
+}
+function auto(){
+  setInterval("move()", 10);
+}
+</script>
+</head>
+<body onLoad="init()">
+  <div id="wrapper">
+    <button onClick="move()">수동 움직이기</button>        
+    <button onClick="auto()">자동 움직이기</button>        
+    <div id="box"></div>    
+  </div>
+</body>
+</html>
