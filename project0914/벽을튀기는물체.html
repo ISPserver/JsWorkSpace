@@ -6,8 +6,8 @@
 <title>Document</title>
 <style>
     #wrapper{
-      width: 700px;
-      height: 700px;
+      width: 500px;
+      height: 500px;
       background: turquoise;
       margin: auto;
       position: relative;
@@ -16,7 +16,8 @@
 <script>
 var x=0;//box의 x좌표    
 var y=100;//box의 y좌표
-var step=5; //우측,좌측을 결정짓는 발걸음 변수
+var stepX=5; //우측,좌측을 결정짓는 발걸음 변수
+var stepY=8; //우측,좌측을 결정짓는 발걸음 변수
 var flag=true;
 var box; //수행 오류!!
 
@@ -33,21 +34,19 @@ function init(){
 }
 //수동
 function move(){
-    x = x + step; //우측방향일때는 양수5, 좌측방향일때는 음수5
-    x+=5;
-    y+=8;
+    x+=stepX;
+    y+=stepY;
+    
+    if(y>=450 || y<=0){
+      stepY= -stepY;
+    }
+    else if(x>=450 || x<=0){
+      stepX= -stepX;
+    }
     box.style.left=x+"px";
     box.style.top=y+"px";
     //박스안에 x값 출력 
-    box.innerText=x;
-
-    //400이상이거나, 0이하면 기존의 5는 부호를 바꿔야 한다
-    //방법1)
-    //flag=(x<=0 ||  x>=400)? !flag:flag;  
-    //step = (flag)? 5 : -5;
-    
-    //방법2)
-    step=(x<=0 ||  x>=400)? -step:step;  
+    //box.innerText=x;
 }
 function auto(){
   setInterval("move()", 10);
