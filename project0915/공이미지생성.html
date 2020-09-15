@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    var n=parseInt(prompt("몇 번째 마다 다른 공을 생성할래요?"));
+    var cnt=1;
+    function createBall(){
+      //document.getElementById("pic") 이건 body에 존재하는 것을 가져오는것.            
+      var img=document.createElement("img");
+      var road = "../images/ball/ball";
+      if(cnt%n==0){
+        img.src=road+"2.png";  
+      }else{        
+      img.src=road+"1.png";// <img src="" />와 동일
+      }
+      img.style.border="2px solid red";
+      img.style.width=50+"px";    
+      document.body.appendChild(img);//생성된 이미지를 body 요소안에 넣어주자!
+      cnt++;
+    }
+  </script>
+</head>
+<body>
+  <button onclick="createBall()">이미지 동적 생성</button>  
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>    
+    var cnt=1;    
+    function createBall(){
+      //document.getElementById("pic") 이건 body에 존재하는 것을 가져오는것.            
+      var img=document.createElement("img");
+      var n=parseInt(document.getElementById("txt").value);    
+      var path = document.getElementById("path").value;
+      if(cnt%n==0){
+        img.src="../images/ball/ball1.png";
+      }else{        
+      img.src=path;// <img src="" />와 동일
+      }
+      img.style.border="2px solid red";
+      img.style.width=50+"px";    
+      document.body.appendChild(img);//생성된 이미지를 body 요소안에 넣어주자!
+      cnt++;
+    }
+    function auto(){
+      setInterval("createBall()",500);
+    }
+  </script>
+</head>
+<body>
+  <input id="txt" type="text" placeholder="몇번째 마다 공을 생성할지 숫자 입력">
+  <input id="path" type="text" placeholder="사용할 이미지 경로">
+  <button onclick="createBall()">공 생성</button>  
+  <button onclick="auto()">자동 생성</button>  
+  <br>
+</body>
+</html>

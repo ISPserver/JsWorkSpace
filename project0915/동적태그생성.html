@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function createImage(){
+      //document.getElementById("pic") 이건 body에 존재하는 것을 가져오는것.
+      var img=document.createElement("img");
+      img.src="../images/hero/image1.png";// <img src="" />와 동일
+      img.style.border="2px solid red";
+      img.style.width=50+"px";    
+      document.body.appendChild(img);//생성된 이미지를 body 요소안에 넣어주자!
+    }
+  </script>
+</head>
+<body>
+  <button onclick="createImage()">이미지 동적 생성</button>
+  <img id="pic" src="../images/hero/image1.png">
+</body>
+</html>
