@@ -70,6 +70,9 @@ button{
     str+="</table>";
     area.innerHTML=str; //문자열 내에 <꺾쇄>가 있다면, 태그로 해석
   }
+  function remove(){
+    document.getElementById("result-area").innerHTML="";
+  }
 </script>
 </head>
 <body>
@@ -83,7 +86,7 @@ button{
             <input type="text" name="name" placeholder="Name 입력...">
 
             <button onclick="regist()">등록</button>
-            <button onclick="">지우기</button>
+            <button onclick="remove()">지우기</button>
           </form>
         </div>
         <div id="result-area">등록된 결과표 나올 영역</div>
