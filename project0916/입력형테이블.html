@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    var w = parseInt(prompt("Table의 Width 입력"));    
+    var b = parseInt(prompt("Table의 Border 입력"));
+    var tr = parseInt(prompt("Table의 층수(tr) 입력"));
+    var td = parseInt(prompt("Table의 호수(td) 입력"));
+    
+    document.write("<table border=\""+b+"px\" width=\""+w+"px\">");   
+    for(var i=0; i<tr; i++){
+      document.write("<tr>");
+      for(var j=0; j<td; j++){    
+        document.write("<td>"+i+"0"+j+"호</td>");
+      }
+      document.write("</tr>");
+    }    
+    document.write("</table>");
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<style>
+.wrapper{
+    width:700px;
+    height:600px;
+    background:yellow;
+    margin:auto;
+    position: relative;
+    border: 2px solid red;
+}    
+.regist-area{
+  width: 200px;
+  height: 100%;
+  background: #dfdfdf;
+  position: absolute;
+  left: 0px;
+}
+#result-area{
+  width: 500px;
+  height: 100%;
+  position: absolute;
+  left: 200px;
+}
+input[type='text']{
+  padding: 6px;  
+  margin: 5px 5px;  
+}
+button{
+  margin: 0px 5px 0px 5px;
+  width: 80px;
+  padding: 6px;
+}
+</style>
+<script>
+  var cnt=0;
+  function regist(){
+    cnt++;
+    //regist-area div에 등록된 사람에 대한 정보 table을 출력
+    /*innerText는 <꺽쇠>를 넣어도 태그로 인식안함,
+    누적이 아닌 대체가 된다*/
+    //area.innerText+="</table>";
+    //테이블 출력전에, 사용자가 입력한 데이터 가져오기
+    //
+    var id =document.querySelector("input[name='id']");
+    var pass =document.querySelector("input[name='pass']");
+    var name =document.querySelector("input[name='name']");
+
+
+    var area = document.getElementById("result-area");
+    var str="<table width=\"100%\" border=\"1px\">";
+    str+="<tr>"
+    str+="<td>ID</td>"
+    str+="<td>Password</td>"
+    str+="<td>Name</td>"
+    str+="</tr>"
+
+    //누적될 데이터를 표현할 tr세트
+    for(var i=1; i<=cnt; i++){    
+    str+="<tr>"
+    str+="<td>"+id.value+"</td>"
+    str+="<td>"+pass.value+"</td>"
+    str+="<td>"+name.value+"</td>"
+    str+="</tr>"    
+    }
+    str+="</table>";
+    area.innerHTML=str; //문자열 내에 <꺾쇄>가 있다면, 태그로 해석
+  }
+</script>
+</head>
+<body>
+    
+    <div class="wrapper">
+        <div class="regist-area">
+          <!--button에 의한 무조건적인 전송방지(안하면 홈페이지 갱신됨)-->
+          <form onsubmit="event.preventDefault()">
+            <input type="text" name="id" placeholder="ID입력...">
+            <input type="text" name="pass" placeholder="PassWord입력...">
+            <input type="text" name="name" placeholder="Name 입력...">
+
+            <button onclick="regist()">등록</button>
+            <button onclick="">지우기</button>
+          </form>
+        </div>
+        <div id="result-area">등록된 결과표 나올 영역</div>
+    </div>
+        
+
+</body>
+</html>
+
+
+
+
+
+
+
