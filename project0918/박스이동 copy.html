@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>    
+    body{
+      margin: 0px;
+    }
+    #wrapper{
+      width: 1200px;
+      height: 800px;
+      position: relative;      
+      margin: 0px;
+      background-color: pink;      
+    }   
+    button{
+      font-size: 15px;     
+    }
+  </style>
+  <script>
+    var wrapper;
+    var box;
+    var x;
+    var y;
+    let a=0.1;    
+    var x_step;
+    var y_step;
+    var flag = false;    
+    var cnt_x;
+    var cnt_y;
+    window.addEventListener("load",function(){
+      wrapper = document.getElementById("wrapper");            
+      x=document.getElementById("xx");
+      y=document.getElementById("yy");      
+      setInterval("move()",10);
+      createBox();
+    })
+    
+    function createBox(){
+      box= document.createElement("div");
+      box.style.width=50+"px";
+      box.style.height=50+"px";
+      box.style.position="absolute";
+      box.style.left=100+"px";
+      box.style.top=150+"px";
+      box.style.backgroundColor="yellow";
+      box.style.borderRadius=50+"%";
+      wrapper.appendChild(box);
+    }        
+    function onnclick(){
+      flag=true;  
+      cnt_x= x.value;
+      cnt_y= y.value;    
+      return flag;
+    }
+
+    function move(){                
+      if((cnt_x !=x.value) || (cnt_y !=y.value)){
+        flag=false;
+      }     
+      if(flag){      
+        x_step = x.value;
+        y_step = y.value;      
+        box.style.left=parseInt(box.style.left) +a*(x_step-parseInt(box.style.left))+"px";
+        box.style.top=parseInt(box.style.top) +a*(y_step-parseInt(box.style.top))+"px";
+        box.innerHTML="x:"+x_step+"<br>y:"+y_step;
+      }
+      
+    }
+
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <input id="xx" type="text" placeholder="x좌표값">
+    <input id="yy"type="text" placeholder="y좌표값">
+    <button id="btn" onclick="onnclick()" >이동</button>    
+  </div>
+  
+</body>
+</html>

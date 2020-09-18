@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input[type='text']{
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+  <script src="../js/lib.js"></script>
+  <script>
+    var yy;
+    var mm;
+    var dd;
+    function init(){
+      yy=document.getElementById("yy");
+      mm=document.getElementById("mm");
+      dd=document.getElementById("dd");
+    }
+    function addZero(){
+      //텍스트박스에 입력한 월,일의 경우,
+      //입력한 숫자 앞에 0을 추가하자! (결국 문자로 간주)
+
+      //(1) 텍스트박스의 입력값은 원칙상 문자열로 간주, 숫자로 바꿔야함
+      // var month= parseInt(mm.value);
+      // var date= parseInt(dd.value);
+      //숫자가 아닌것을 판단하는 함수: isNaN(); -->숫자아니면 true 반환      
+      //(2) 한자리 인경우엔 0을 접두어로 부착!!
+
+      var h=document.querySelector("h1");
+      //getZeroDate(date); 0을 추가해주는 함수
+      h.innerText= yy.value+"년"+getZeroDate(parseInt(mm.value))+"월"+getZeroDate(parseInt(dd.value))+"일";
+    }
+    function removeZero(){
+      //숫자를 표현한 문자열 대상 parseInt() 하면 정수화 되므로 0삭제
+      var h=document.querySelector("h1");
+      h.innerText= yy.value+"년"+parseInt(mm.value)+"월"+parseInt(dd.value)+"일";
+    }
+    console.log(getRandomBetween(5,10));
+  </script>
+</head>
+<body onload="init()">
+  <input type="text" id="yy"/>년
+  <input type="text" id="mm"/>월
+  <input type="text" id="dd"/>일
+
+  <button onclick="addZero()">0접두어 추가</button>
+  <button onclick="removeZero()">0접두어 제거</button>
+  <h1>검증 및 데이터 정제결과 나올곳</h1>
+</body>
+</html>
