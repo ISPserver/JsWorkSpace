@@ -44,15 +44,88 @@
       text-align: center;
     }
   </style>
+  <script>
+    //게임에서 진행할 데이터를 생성하되, 순서를 갖게 하자
+    //Why? 엔터를 칠때마다 해당 단어의 다음단어,다음단어,
+    //즉 순서가 존재해야함.
+    var word = new Array(); //크기 미정 상태
+    word[0]="광화문";
+    word[1]="지하철";
+    word[2]="소나기";
+    word[3]="블랙홀";
+    word[4]="핵전쟁";
+    word[5]="짜장면";
+    word[6]="제주도";
+    word[7]="코로나";
+    word[8]="청바지";
+    word[9]="카메라";
+    var question;
+    var feedback;
+    var record;
+    var txt;
+    var score=0; //점수 누적
+    var n=0; //단어배열 index 변수
+
+    function init(){
+      //아이디가 부여된 엘리먼트들을 전역변수로 미리 선언해 놓자!
+      question = document.getElementById("question");
+      txt = document.getElementById("txt");
+      feedback = document.getElementById("feedback");
+      record = document.getElementById("record");
+
+      //단어 출력!!
+      printWord();
+      printScore();
+      //txt에 커서 올려놓기
+      txt.focus();
+      //총알이면,눌렀다는 이벤트에 반응하면 되지만,
+      //글씨 입력이라면, 눌렀다 땟을때 하나의 철자가 입력되는시점이다.
+      txt.addEventListener("keyup",function(){
+        //키보드 엔터키를 누를때 다음 단어가 나오도록 함
+        if(event.keyCode==13){ //Enter 아스키 코드값
+          if(txt.value == question.innerText){
+            //칭찬으로 O를 출력, 10점 증가
+            feedback.innerText="O";
+            score+=10;
+            printScore();
+          }
+          else{
+            //틀리면 X를 출력
+            feedback.innerText="X";
+          }
+          txt.value="";
+          //입력값, 출력된 단어와 일치성을 판단후 피드백처리
+          n++;
+          if(n>=word.length){//준비된 단어가 모두 끝날시 종료
+            alert("게임종료");
+            question.innerText="Game Over!!!"            
+          }else{
+          printWord();
+          }
+        }
+      })
+    }
+    //단어 출력처리
+    function printWord(){
+      question.innerText= word[n];
+    }
+    function printScore(){
+      record.innerText=score+"점";
+    }
+    window.addEventListener("load", function(){
+      init();
+      
+    })
+  </script>
 </head>
 <body>
   <div class="wrapper">
     <div id="question">단어</div>
     <div class="word-input">
-      <input type="text" placeholder="단어 입력">
+      <input id="txt" type="text" placeholder="단어 입력">
     </div>
-    <div id="feedback">X</div>
-    <div id="record">30점</div>
+    <div id="feedback"></div>
+    <div id="record"></div>
   </div>
 </body>
 </html>
