@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    var tx,ty;
+    var box;
+    let a=0.1; //고정된 상수
+    var targetX=0; //박스가 이동할 x목표지점
+    var targetY=0; //박스가 이동할 y목표지점
+    //load 이벤트가 발생하면, 이름없는 익명함수가 호출된다.
+    //이렇게 이벤트 발생시, 시스템에 의해 역으로 호출되는 함수유형을
+    //콜백함수 라고 한다. 주로 이벤트 구현시 사용된다.
+    window.addEventListener("load", function(){
+      init(); //초기화 함수 호출
+      setInterval("move()",10);
+    })
+    
+    function init(){
+      tx = document.getElementById("tx");
+      ty = document.getElementById("ty");
+      box=document.getElementById("box");
+      box.style.position="absolute";
+      box.style.left=0+"px";
+      box.style.top=200+"px";
+      box.style.background="yellow";
+      box.style.border="2px solid red";
+      box.style.boxSizing="border-box";
+      box.style.width=100+"px";
+      box.style.height=100+"px";
+      document.body.appendChild(box);
+
+      var bt=document.getElementById("button");      
+      bt.addEventListener("click",function(){
+        //버튼을 누를때는 타겟 지정만 하면되고, 자동호출함수는 호출하지말자
+        setTarget();
+      })
+    }
+    //사용자가 버튼을 누르기도 전에, 이미 박스는 애니메이션이 동작하고 있어야 한다.
+    function move(){
+      //박스의 좌표이동, 감속도 공식 이용
+      //박스의 위치는 = 현재위치+a*(목표지점-현재박스위치)
+      box.style.left=parseFloat(box.style.left) +a*(targetX-parseFloat(box.style.left))+"px";
+      box.style.top=parseFloat(box.style.left) +a*(targetY-parseFloat(box.style.top))+"px";      
+      box.innerText="x:"+parseFloat(box.style.left)+"\ny:"+parseFloat(box.style.top);
+    }
+    function setTarget(){
+      targetX = parseFloat(tx.value);
+      targetY = parseFloat(ty.value);
+    }
+  </script>
+</head>
+<body>
+  <input id="tx" type="text" placeholder="목표 x좌표">
+  <input id="ty" type="text" placeholder="목표 y좌표">
+  <button>이동</button>
+  <div id="box"></div>
+</body>
+</html>

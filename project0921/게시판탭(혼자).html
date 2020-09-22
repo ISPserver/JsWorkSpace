@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  .wrapper{
+    width: 600px;
+    height: 500px;
+    margin: auto;
+  }
+  #d1{
+    width: 100%;
+    height: 50px;    
+  }  
+  #d2{
+    width: 100%;
+    height: 450px;
+    background: red;
+    display: none;
+  }
+  #m1,#m2,#m3{
+    display: inline-block;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+  }
+  #m1{background: blue;} #m2{background:yellow} #m3{background: turquoise;}
+  </style>
+  <script>
+    var d2; // 탭 클릭시 정보 나오는곳
+    var m1;
+    var m2;
+    var m3;
+    var flag=true;
+    function init(){
+      d2 = document.getElementById("d2");
+      m1 = document.getElementById("m1");
+      m2 = document.getElementById("m2");
+      m3 = document.getElementById("m3");
+      // d2.style.display="none";      
+      m1.addEventListener("click",function(){        
+        if(flag)d2.style.display="block";        
+        else d2.style.display="none";        
+        flag=!flag;
+      })
+
+      m2.addEventListener("click",function(){        
+        if(flag)d2.style.display="block";        
+        else d2.style.display="none";        
+        flag=!flag;
+      })
+
+      m3.addEventListener("click",function(){        
+        if(flag)d2.style.display="block";        
+        else d2.style.display="none";        
+        flag=!flag;
+      })
+    }
+
+    window.addEventListener("load",function(){
+      init();
+    })
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <div id="d1">
+      <div id="m1">공지사항</div><div id="m2">QnA</div><div id="m3">자유게시판</div>
+    </div>
+    <div id="d2">Text</div>
+  </div>
+</body>
+</html>
