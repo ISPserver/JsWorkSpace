@@ -21,9 +21,9 @@ var barArray=new Array();//공간 확보는 하지 않고, 배열만 선언한 �
 var colorArray=["red","orange","yellow","green","blue","navy","purple"]; //각 div 에 적용할 색상 배열 
 //alert(barArray.length);
 var a=0.1;
-var targetH=500; //바의 목표 높이
+var targetH=[20,20,20,20,20,20,20,]; //bar들의 각자목표 높이
 var barWidth=65; //막대바의 너비
-
+var index=5;
 //막대생성 
 function createBar(){
     for(var i=0;i<7;i++){
@@ -35,22 +35,29 @@ function createBar(){
         bar.style.height=20+"px";
         bar.style.borderRadius="4px";
         bar.style.background=colorArray[i]; //배열색상을 적용
-
+        bar.id=i;
+        bar.addEventListener("mouseover",function(){            
+            index = this.id;
+            targetH[index]=500;            
+        })        
+        bar.addEventListener("mouseout",function(){                        
+            index = this.id;
+            targetH[index]=20;            
+        })
+        
         wrapper.appendChild(bar);//wrapper에 추가!!
         //사이즈가 0인 배열에 , 방금 생성된 바를 추가하자!!
         //개발자가 그 크기를 정해놓지 못할 경우엔 아주 유용하다!!
         //ex) 채팅서버 구축시 사용자가 몇명이 들어올지 알수가 없다..
-        barArray.push(bar);
-        console.log("현재까지의 배열의 길이는 ", barArray.length);
+        barArray.push(bar);        
     }
 }    
 
 //막대크기 변경 함수 
-function move(){
-    targetH=getRandomBetween(20,500);
-    
-    var index=getRandom(barArray.length); //0~6 사이의 랜덤한 숫자를 추출
-    barArray[index].style.height = parseFloat(barArray[index].style.height) + a*(targetH-parseFloat(barArray[index].style.height))+"px";
+function move(){                
+    //선택한 막대에 대해서만.
+    //어떤 막대를 움직일지는 변수를 결정짓자.
+    barArray[index].style.height = parseFloat(barArray[index].style.height) + a*(targetH[index]-parseFloat(barArray[index].style.height))+"px";
     barArray[index].innerText=parseFloat(barArray[index].style.height);
 }
 
@@ -58,7 +65,7 @@ function init(){
     wrapper=document.getElementById("wrapper");
     //barArray보다 색상을 먼저 존재시키자     
     createBar();
-    setInterval("move()",5);
+    setInterval("move()",10);
 }   
 window.addEventListener("load",function(){
     init();
