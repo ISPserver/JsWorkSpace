@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrapper{
+      width: 500px;
+      height: 600px;      
+      margin: auto;
+      position: relative;
+    }
+    #bg{
+      width: 100%;
+      height: 200px;      
+      text-align: center;     
+    }
+    #hint{
+      width: 100%;
+      height: 100px;      
+      text-align: center;
+      font-size: 30px;
+      background: dodgerblue;         
+    }
+    #txt{
+      width: 100%;
+      height: 100px;      
+      box-sizing: border-box;      
+      text-align: center;
+      font-size: 30px;         
+    }
+    #result{
+      width: 100%;
+      height: 100px;      
+      text-align: center;
+      font-size: 30px;   
+      background: cornsilk;      
+    }
+    #record{      
+      width: 100%;
+      height: 100px;      
+      text-align: center;     
+      font-size: 30px;
+      background: yellow;         
+    }
+  </style>
+  <script>
+    var wrapper,bg,hint,txt,result,record;
+    var score=0; //점수변수
+    var ox=""; //O,X결과값
+    var data=new Array();
+    var n=0;
+    function createImg(){
+      data=[
+      ["../images/nation/1.png", "세계최대강대국","미국"],
+      ["../images/nation/2.jpg", "산초","멕시코"],
+      ["../images/nation/3.jpg", "로마제국","이탈리아"],
+      ["../images/nation/4.png", "신사의 나라,007","영국"],
+      ["../images/nation/5.jpg", "나찌","독일"],
+      ["../images/nation/6.png", "무적함대","스페인"],
+      ["../images/nation/7.jpg", "에펠탑","프랑스"],
+      ["../images/nation/8.gif", "차이코프스키","러시아"],
+      ["../images/nation/9.png", "쌈바축구","브라질"],
+      ["../images/nation/10.jpg", "아이스하키","캐나다"],
+      ["../images/nation/11.jpg", "후지산","일본"],
+      ["../images/nation/12.png", "쿵푸 팬더","중국"],
+      ["../images/nation/13.gif", "코알라","호주"]];
+    }    
+    function init(){
+      bg=document.getElementById("bg");
+      hint=document.getElementById("hint");
+      record=document.getElementById("record");      
+      wrapper=document.getElementById("wrapper");
+      txt=document.getElementById("txt");
+      result=document.getElementById("result");
+
+      printImg();
+      printHint();      
+      printScore();
+
+      txt.focus();
+
+      txt.addEventListener("keyup",function(){
+        //키보드 엔터키를 누를때 다음 단어가 나오도록 함
+        if(event.keyCode==13){ //Enter 아스키 코드값
+          if(txt.value == data[n][2]){
+            //칭찬으로 O를 출력, 10점 증가
+            result.innerText="O";
+            score+=10;            
+            printScore();
+          }
+          else{
+            //틀리면 X를 출력
+            result.innerText="X";
+          }
+          txt.value="";
+          //입력값, 출력된 단어와 일치성을 판단후 피드백처리
+          n++;
+          if(n>=data.length){//준비된 단어가 모두 끝날시 종료
+            alert("게임종료");
+            bg.innerText="Game Over!!!"            
+          }else{
+            printImg();
+            printHint();            
+            printScore();
+          }
+        }
+      })
+    }
+    function printImg(){
+      var img=document.createElement("img");
+          img.src=data[n][0];
+          img.style.width=500+"px";
+          img.style.height=200+"px";     
+          bg.innerText="";          
+          bg.appendChild(img);  
+    }
+    function printHint(){      
+      hint.innerText=data[n][1];
+    }
+    function printScore(){
+      record.innerText=score+"점";
+    }
+    window.addEventListener("load",function(){
+      createImg();
+      init();      
+    })
+  </script>
+</head>
+<body>
+  <div class="wrapper">
+    <div id="bg"></div>
+    <div id="hint"></div>
+    <input id="txt" type="text" placeholder="단어게임">
+    <div id="result"></div>
+    <div id="record"></div>
+  </div>
+</body>
+</html>
