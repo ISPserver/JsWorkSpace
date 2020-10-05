@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script>
+var arr= new Array();
+/*현실의 화살을 표현하기위해, 변수 함수를 조합하면 충분히
+수행 가능하다 하지만,
+문제) 만일 화살을 여러개 만들어야 한다면??? */
+class Arrow{
+  //아래의 코드는 객체내에 작성한 것이므로,즉 객체중심적 코드로 이해    
+  //js에서는,객체가 보유한 변수(속성)를 반드시 constructor()내에서 
+  //정의할 수 있다.
+  constructor(x,y,velX){
+    this.span;
+    this.x=x;
+    this.y=y;
+    this.velX=velX; //속도를 설정하는 변수
+    this.createArrow();
+  }  
+  createArrow(){
+      //스팬을 생성하여 화면에 부착!!
+      this.span=document.createElement("span");
+      this.span.innerText="→";
+      this.span.style.position="absolute";
+      this.span.style.left=this.x+"px";
+      this.span.style.top=this.y+"px";
+
+      document.body.appendChild(this.span);
+  }
+  tick(){// 화면에 그려짐?아니다. 물리량 변화 즉 사물의 상태변경
+    this.x+=this.velX; //게임분야에선 이걸 tick이라고 부른다.
+  }
+
+  render(){//화살을 움직이기 위한 함수(x축 값을 변경)
+    this.span.style.left=this.x+"px";
+  }
+};
+
+//끝없이, 실행되는 게임 루프 영역
+function gameLoop(){
+  for(var i=0; i<arr.length; i++){
+    arr[i].tick();
+    arr[i].render();
+  }  
+}
+/* 객체의 개념 잡기 */
+window.addEventListener("load", function(){
+  //클래스명으로 된, 함수를 가리켜 생성자 함수라 한다.
+  //따라서 Arrow()란 constructor()를 가리킨다.
+  //a1 = new Arrow(0,100,5);
+  //대량의 화살 생성
+  for(var i=0; i<100; i++){
+    arr.push(new Arrow(0,i*3,i+1));
+  }
+  //createArrow();
+  setInterval("gameLoop()",10);//fps 프레임 퍼 세컨즈
+});
+</script>
+</head>
+<body>
+</body>
+</html>
