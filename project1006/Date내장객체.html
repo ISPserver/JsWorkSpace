@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    
+    function showTime(){
+      /*Date 내장객체 학습*/
+      var d1 = new Date(); //날짜 객체의 인스턴스 1개 성성!
+      //개발자가 인스턴스만 생성할 경우. 현재날짜 정보를 보유하게 됨.
+      console.log(d1);//객체는 문자열은 아니지만, 출력명령을 만나면 자동으로 문자화된다.
+      var yy= d1.getFullYear();
+      console.log("현재연도는 %d"+yy);
+
+      var mm=d1.getMonth();//주의0-11로 나옴
+      console.log("이번달은 %d월 입니다",mm+1);
+
+      //5일 뒤엔 며칠일까
+      //현재 날짜 객체를 원하는 날짜로 조작!
+      d1.setDate(d1.getDate()+5);
+      console.log("오늘은 ",d1.getDate()+"이며,요일은"+d1.getDay());
+
+    }
+    //setInterval("showTime()", 1000);
+    showTime();
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

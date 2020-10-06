@@ -1,0 +1,16 @@
+<script>
+  var yy = prompt("원하는 연도 입력");
+  var mm = prompt("원하는 월 입력");
+  var dd = prompt("원하는 일 입력");
+
+  var d = new Date();
+  d.setFullYear(yy);
+  d.setMonth(mm+1);
+  d.setDate(dd);
+
+  var days=["일요일","월요일","화요일","수요일","목요일","금요일","토요일"];
+  var day=days[d.getDay()];
+
+  alert("그 날은 "+day+"입니다");
+  
+</script>

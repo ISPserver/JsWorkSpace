@@ -19,6 +19,7 @@ body{
 <script src="./Hero.js"></script>
 <script src="./Bullet.js"></script>
 <script src="./Enemy.js"></script>
+<script src="../js/lib.js"></script>
 <script>
 var wrapper;
 var bgY=0; //배경의 y축을 결정할 변수
@@ -113,7 +114,7 @@ function gameLoop(){
     }
     for(var i=0;i<enemyArray.length;i++){
         enemyArray[i].tick();
-        enemyArray[i].render();
+        enemyArray[i].render();        
     }
 
     bgEffect();

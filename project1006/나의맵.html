@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #myMap{
+        width:1000px;
+        height:800px;
+        background:yellow;
+        margin:auto;
+    }    
+  </style>
+  <script>
+    var myMap;// div
+    function init(){
+      myMap = document.getElementById("myMap");
+      var pos=new google.maps.LatLng(37.500453,127.036716);
+      var mapProp= {
+        center: pos,
+        zoom:17
+      };
+      //구글맵 객체 생성
+      var map= new google.maps.Map(myMap,mapProp);
+
+      //마커 생성
+      var marker = new google.maps.Marker({
+        position: pos,
+        animation:google.maps.Animation.BOUNCE,
+        icon:"../images/shooting/misile.png"
+      });
+      marker.setMap(map);//마커를 적용할 맵 객체
+
+    }    
+  </script>
+</head>
+<body>
+  <div id="myMap">구글지도 나올 예정</div>
+</body>
+</html>
+<script src="https://maps.googleapis.com/maps/api/js?key=&callback=init"></script>
