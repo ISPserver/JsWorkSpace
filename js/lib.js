@@ -52,3 +52,17 @@ function collisionCheck(box1, box2) {
 
  return result;
 }
+
+/*-----------------------------------------------
+해당 월의 총 일수 구하기(마지막 날짜)
+yy:년도 mm: 구하고 싶은 월을 의미
+주의)js에서 월은 0부터 시작하므로, 10월구하려면 9를 넘겨야함
+ex) 10월은 31일 / 11월은 30일
+-----------------------------------------------*/
+function getLastDate(yy,mm){
+  var d = new Date(); //현재 날짜임. 조작이 가해져야 함.
+  d.setFullYear(yy);
+  d.setMonth(mm+1);//일단 다음달로 넘어감 why? 0을 대입해 이전달 마지막날 구하기위해.
+  d.setDate(0);//이전 달의 마지막 날로 돌아감.
+  return d.getDate();
+}
